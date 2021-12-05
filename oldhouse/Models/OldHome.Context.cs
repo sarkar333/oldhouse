@@ -13,10 +13,12 @@ namespace oldhouse.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OldHouseEntities : DbContext
+    public partial class OldHouseEntities1 : DbContext
     {
-        public OldHouseEntities()
-            : base("name=OldHouseEntities")
+        internal readonly object imagetbl;
+
+        public OldHouseEntities1()
+            : base("name=OldHouseEntities1")
         {
         }
     
@@ -25,6 +27,7 @@ namespace oldhouse.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Register> Registers { get; set; }
     }
 }

@@ -44,10 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.Serialization" />
@@ -96,56 +96,99 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\OldHouseDB.Context.tt">
+    <Content Include="Models\OldHome.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OldHouseDB.Context.cs</LastGenOutput>
-      <DependentUpon>OldHouseDB.edmx</DependentUpon>
+      <DependentUpon>OldHome.edmx</DependentUpon>
+      <LastGenOutput>OldHome.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\OldHouseDB.tt">
+    <Content Include="Models\OldHome.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OldHouseDB.edmx</DependentUpon>
-      <LastGenOutput>OldHouseDB.cs</LastGenOutput>
+      <DependentUpon>OldHome.edmx</DependentUpon>
+      <LastGenOutput>OldHome.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Image.cs">
+      <DependentUpon>OldHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Myimage.cs" />
     <Compile Include="Models\MyLogin.cs" />
     <Compile Include="Models\MyRegister.cs" />
-    <Compile Include="Models\OldHouseDB.Context.cs">
+    <Compile Include="Models\OldHome.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OldHouseDB.Context.tt</DependentUpon>
+      <DependentUpon>OldHome.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OldHouseDB.cs">
+    <Compile Include="Models\OldHome.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OldHouseDB.tt</DependentUpon>
+      <DependentUpon>OldHome.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OldHouseDB.Designer.cs">
+    <Compile Include="Models\OldHome.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OldHouseDB.edmx</DependentUpon>
+      <DependentUpon>OldHome.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Register.cs">
-      <DependentUpon>OldHouseDB.tt</DependentUpon>
+      <DependentUpon>OldHome.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\OldHouseDB.edmx">
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\OldHome.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OldHouseDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>OldHome.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\OldHouseDB.edmx.diagram">
-      <DependentUpon>OldHouseDB.edmx</DependentUpon>
+    <Content Include="Models\OldHome.edmx.diagram">
+      <DependentUpon>OldHome.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -154,7 +197,19 @@
     <Content Include="Views\Home\OldHome.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Home\SetPolicy.cshtml" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Views\Home\UserOldHome.cshtml" />
     <Content Include="Views\Home\AddDetails.cshtml" />
+    <Content Include="Views\Home\MainPage.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\UploadImage.cshtml" />
+    <Content Include="Views\Home\ViewServices.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -164,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
+    <Folder Include="Image\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

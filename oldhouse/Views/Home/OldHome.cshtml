@@ -1,17 +1,82 @@
-﻿
+﻿@model oldhouse.Models.MyLogin
 @{
     ViewBag.Title = "OldHome";
 }
 
-<h2>OldHome</h2>
-<button onclick="document.location=''">Add Details</button>
-<br />
+<body>
+    <center>
 
-<button onclick="document.location=''">Set Policy</button>
-<br />
 
-<button onclick="document.location=''">View Policy</button>
-<br />
+        <h2>Welcome to OldHome</h2> <br />
 
-<button onclick="document.location=''">View Request</button>
-<br />
+
+        @using (Html.BeginForm("AddDetailsAutoFill", "Home", FormMethod.Post))
+        {
+
+            @Html.HiddenFor(model => model.Password)
+            @Html.HiddenFor(model => model.UserName)
+            <div class="form-group">
+                <div class="col-md-offset-2 btn btn-primary btn-lg">
+                    <input type="submit" value="Add Details" class="btn btn-default text-white fw-bold" />
+
+                </div>
+            </div>
+        }
+
+        @using (Html.BeginForm("UploadImage", "Home", FormMethod.Get))
+
+        {
+
+            <div class="form-group m-3">
+                <div class="col-md-offset-2 btn btn-primary btn-lg">
+                    <input type="submit" value=" Add Services" class="btn btn-default text-white fw-bold" />
+
+                </div>
+            </div>
+        }
+
+        @using (Html.BeginForm("ViewServices", "Home", FormMethod.Get))
+        {
+
+
+            <div class="form-group m-3">
+                <div class="col-md-offset-2 btn btn-primary btn-lg">
+                    <input type="submit" value="View Services" class="btn btn-default text-white fw-bold" />
+
+                </div>
+            </div>
+
+        }
+        @using (Html.BeginForm("SetPolicy", "Home", FormMethod.Get))
+        {
+
+
+            <div class="form-group m-3">
+                <div class="col-md-offset-2 btn btn-primary btn-lg">
+                    <input type="submit" value="Add Packages" class="btn btn-default text-white fw-bold" />
+
+                </div>
+            </div>
+
+        }
+        @using (Html.BeginForm("ViewServices", "Home", FormMethod.Get))
+        {
+
+
+            <div class="form-group m-3">
+                <div class="col-md-offset-2 btn btn-primary btn-lg">
+                    <input type="submit" value="View Packages" class="btn btn-default text-white fw-bold" />
+
+                </div>
+            </div>
+
+        }
+    </center>
+
+
+
+</body>
+
+
+
+

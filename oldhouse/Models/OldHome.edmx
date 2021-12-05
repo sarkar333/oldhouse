@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="OldHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar(max)" />
+          <Property Name="ImageData" Type="varchar(max)" />
+          <Property Name="ImageType" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Registers">
           <Key>
             <PropertyRef Name="id" />
@@ -20,6 +29,7 @@
           <Property Name="UserType" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityContainer Name="OldHouseModelStoreContainer">
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registers" EntityType="Self.Registers" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
@@ -27,6 +37,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OldHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImageType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Register">
           <Key>
             <PropertyRef Name="id" />
@@ -41,7 +60,8 @@
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="OldHouseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OldHouseEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="Self.Image" />
           <EntitySet Name="Registers" EntityType="Self.Register" />
         </EntityContainer>
       </Schema>
@@ -49,7 +69,17 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OldHouseModelStoreContainer" CdmEntityContainer="OldHouseEntities">
+        <EntityContainerMapping StorageEntityContainer="OldHouseModelStoreContainer" CdmEntityContainer="OldHouseEntities1">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="OldHouseModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Registers">
             <EntityTypeMapping TypeName="OldHouseModel.Register">
               <MappingFragment StoreEntitySet="Registers">
