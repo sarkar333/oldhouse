@@ -1,0 +1,98 @@
+﻿@model oldhouse.Models.MyPackage
+
+@{
+    ViewBag.Title = "Package";
+}
+
+<link href="~/bootstrap.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width" />
+<title>Package</title>
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>MyPackage</h4>
+            <hr />
+            @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.BookingType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BookingType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BookingType, "", new { @class = "text-danger" })
+                </div>*@
+            @*</div>*@
+            <input type="radio" @*id="html"*@ name="BookingType" value="Booking For Yourself">
+            <label for="html">Bookforyourself</label>
+
+
+            <input type="radio" @*id="html"*@ name="BookingType" value="For Others">
+            <label for="html">Bookforother</label>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PackageName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PackageName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PackageName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.PackageDetails, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PackageDetails, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PackageDetails, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                    @Html.LabelFor(model => model.Installment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Installment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Installment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            @*Duration Time <br />
+            <input type="text" name=" Installment" />
+            <br />*@
+
+            Packages Details: <br />
+            <textarea name="PackageDetails" rows="5" cols="50">
+     </textarea><br />
+
+
+
+
+            <input type="submit" value="Create" class="btn btn-primary" />
+
+
+        </div>
+    }
+
+    @*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+</body>
+    </html>
+@Html.ActionLink("CLick To View", "ViewPackage")
+@*<button type="button" class="btn btn-primary btn-lg" onclick="document.location='https://localhost:44316/Home/Login'">Login</button>*@

@@ -14,6 +14,12 @@ namespace oldhouse.Models
     
     public partial class Register
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Register()
+        {
+            this.Packages = new HashSet<Package>();
+        }
+    
         public long id { get; set; }
         public string FullName { get; set; }
         public string ContactNo { get; set; }
@@ -23,5 +29,11 @@ namespace oldhouse.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string UserType { get; set; }
+        public string TotalSeats { get; set; }
+        public string VacantSeats { get; set; }
+        public string Gender { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Package> Packages { get; set; }
     }
 }

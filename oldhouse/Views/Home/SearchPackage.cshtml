@@ -1,0 +1,96 @@
+﻿@model IEnumerable<oldhouse.Models.Package>
+
+@{
+    ViewBag.Title = "SearchPackage";
+}
+
+<h2>SearchPackage</h2>
+@using (Html.BeginForm("SearchPackage", "Home", FormMethod.Post))
+{
+    @Html.RadioButton("type", "For Others")<label>For Other</label>
+    @Html.RadioButton("type", "Booking For Yourself")<label>For YourSelf</label>
+    @Html.RadioButton("type", "")<label>Both</label>
+    <br />
+    <input type="submit" value="Search" />
+}
+@if (IsPost)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Installment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Register.FullName)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Packages1.BookingType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package1.BookingType)
+            </th>*@
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Installment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Register.FullName)
+                </td>
+                <td>
+                    @*<input type="submit" value="Request" />*@
+                    <button onclick="myFunction()">Request</button>
+
+                    <script>
+                        function myFunction() {
+                            alert("Request Submit Successfully!");
+                        }
+                    </script>
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Packages1.BookingType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Package1.BookingType)
+                </td>*@
+
+            </tr>
+        }
+
+    </table>
+
+}

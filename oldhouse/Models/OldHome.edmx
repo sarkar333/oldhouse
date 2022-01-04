@@ -4,15 +4,27 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OldHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Images">
+    <Schema Namespace="OldHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Packages">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ImageName" Type="nvarchar(max)" />
-          <Property Name="ImageData" Type="varchar(max)" />
-          <Property Name="ImageType" Type="nvarchar(max)" />
+          <Property Name="BookingType" Type="nvarchar(max)" />
+          <Property Name="PackageName" Type="nvarchar(max)" />
+          <Property Name="PackageDetails" Type="nvarchar(max)" />
+          <Property Name="Duration" Type="nvarchar(max)" />
+          <Property Name="Price" Type="nvarchar(max)" />
+          <Property Name="Installment" Type="nvarchar(max)" />
+          <Property Name="regid" Type="bigint" />
         </EntityType>
         <EntityType Name="Registers">
           <Key>
@@ -27,43 +39,150 @@
           <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="UserType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TotalSeats" Type="nvarchar(max)" />
+          <Property Name="VacantSeats" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityContainer Name="OldHouseModelStoreContainer">
-          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Registers" EntityType="Self.Registers" Schema="dbo" store:Type="Tables" />
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="OldHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Image">
+        <EntityType Name="Requested">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ImageData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ImageType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Request" Type="varchar" MaxLength="50" />
+          <Property Name="Accept" Type="varchar" MaxLength="50" />
+          <Property Name="Reject" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__Packages__regid__06CD04F7">
+          <End Role="Registers" Type="Self.Registers" Multiplicity="0..1" />
+          <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="regid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_Packages">
+          <End Role="Packages" Type="Self.Packages" Multiplicity="1" />
+          <End Role="Packages1" Type="Self.Packages" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packages1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OldHouseModelStoreContainer">
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registers" EntityType="Self.Registers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requested" EntityType="Self.Requested" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Packages__regid__06CD04F7" Association="Self.FK__Packages__regid__06CD04F7">
+            <End Role="Registers" EntitySet="Registers" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_Packages" Association="Self.FK_Packages_Packages">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Packages1" EntitySet="Packages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OldHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OldHouseEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="OldHouseModel.Image" />
+          <EntitySet Name="Registers" EntityType="OldHouseModel.Register" />
+          <EntitySet Name="Packages" EntityType="OldHouseModel.Package" />
+          <AssociationSet Name="FK__Packages__regid__06CD04F7" Association="OldHouseModel.FK__Packages__regid__06CD04F7">
+            <End Role="Register" EntitySet="Registers" />
+            <End Role="Package" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_Packages" Association="OldHouseModel.FK_Packages_Packages">
+            <End Role="Package" EntitySet="Packages" />
+            <End Role="Package1" EntitySet="Packages" />
+          </AssociationSet>
+          <EntitySet Name="Requesteds" EntityType="OldHouseModel.Requested" />
+        </EntityContainer>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Register">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalSeats" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VacantSeats" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Packages" Relationship="OldHouseModel.FK__Packages__regid__06CD04F7" FromRole="Register" ToRole="Package" />
         </EntityType>
-        <EntityContainer Name="OldHouseEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Images" EntityType="Self.Image" />
-          <EntitySet Name="Registers" EntityType="Self.Register" />
-        </EntityContainer>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PackageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PackageDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Installment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="regid" Type="Int64" />
+          <NavigationProperty Name="Register" Relationship="OldHouseModel.FK__Packages__regid__06CD04F7" FromRole="Package" ToRole="Register" />
+          <NavigationProperty Name="Packages1" Relationship="OldHouseModel.FK_Packages_Packages" FromRole="Package" ToRole="Package1" />
+          <NavigationProperty Name="Package1" Relationship="OldHouseModel.FK_Packages_Packages" FromRole="Package1" ToRole="Package" />
+        </EntityType>
+        <Association Name="FK__Packages__regid__06CD04F7">
+          <End Type="OldHouseModel.Register" Role="Register" Multiplicity="0..1" />
+          <End Type="OldHouseModel.Package" Role="Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Package">
+              <PropertyRef Name="regid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_Packages">
+          <End Type="OldHouseModel.Package" Role="Package" Multiplicity="1" />
+          <End Type="OldHouseModel.Package" Role="Package1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Package1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Requested">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Request" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Accept" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -72,26 +191,52 @@
         <EntityContainerMapping StorageEntityContainer="OldHouseModelStoreContainer" CdmEntityContainer="OldHouseEntities1">
           <EntitySetMapping Name="Images">
             <EntityTypeMapping TypeName="OldHouseModel.Image">
-              <MappingFragment StoreEntitySet="Images">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
-                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
-                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Registers">
             <EntityTypeMapping TypeName="OldHouseModel.Register">
               <MappingFragment StoreEntitySet="Registers">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="VacantSeats" ColumnName="VacantSeats" />
+                <ScalarProperty Name="TotalSeats" ColumnName="TotalSeats" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="OldHouseModel.Package">
+              <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="regid" ColumnName="regid" />
+                <ScalarProperty Name="Installment" ColumnName="Installment" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="PackageDetails" ColumnName="PackageDetails" />
+                <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+                <ScalarProperty Name="BookingType" ColumnName="BookingType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requesteds">
+            <EntityTypeMapping TypeName="OldHouseModel.Requested">
+              <MappingFragment StoreEntitySet="Requested">
+                <ScalarProperty Name="Reject" ColumnName="Reject" />
+                <ScalarProperty Name="Accept" ColumnName="Accept" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,16 +1,58 @@
-﻿
+﻿@model oldhouse.Models.MyRegister
+
 @{
     ViewBag.Title = "UserOldHome";
 }
+<center>
 
-<h2>UserOldHome</h2>
-Search City
-<select name="" style="border:2px solid Tomato;" ><br />
-    <option></option>
-</select><br /><br />
-<input type="text" placeholder="Search By Name"/><br />
-Gender<br />
-<input type="radio" />Male
-<input type="radio" />Female
-<br /><br />
-<button type="button" class="btn btn-primary btn-primary">Search</button>
+    <h2>Search OldHome</h2>
+    Search City
+    <select name="City" style="border:2px solid Tomato;">
+        <option value="Rawalpindi">Rawalpindi</option>
+        <option value="Islamabad">Islamabad</option>
+        <option value="Lahore">Lahore</option>
+        <option value="Karachi">Karachi</option>
+
+    </select>
+    <br />
+    <br />
+    @using (Html.BeginForm("Details", "Home", FormMethod.Post))
+    {
+
+        <div class="form-group">
+            @Html.Label("UserName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("UserName", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("UserName", "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.RadioButton("Gender", "M") Male
+                @Html.RadioButton("Gender", "F") Female
+            </div>
+        </div>
+        <br />
+
+        @*<button type="button" class="btn btn-primary btn-primary">Search</button>*@
+
+
+        <button onclick="document.location='https://localhost:44316/Home/Details'">Search</button>
+        <br />
+
+    }
+    @if (IsPost)
+    {
+        <div style="border:double">
+            <label>Name:</label>
+            <label>@Model.FullName</label>
+            <br />
+            <label>City:</label>
+            <label>@Model.City</label>
+            <br/>
+       
+            @using (Html.BeginForm("ShowDetails", "Home", FormMethod.Get))
+            {
+                <button onclick="document.location='https://localhost:44316/Home/ShowDetails'">Detail</button>
+            }
+        </div>
+    }
+</center>

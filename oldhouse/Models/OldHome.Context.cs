@@ -15,8 +15,6 @@ namespace oldhouse.Models
     
     public partial class OldHouseEntities1 : DbContext
     {
-        internal readonly object imagetbl;
-
         public OldHouseEntities1()
             : base("name=OldHouseEntities1")
         {
@@ -29,5 +27,7 @@ namespace oldhouse.Models
     
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Register> Registers { get; set; }
+        public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<Requested> Requesteds { get; set; }
     }
 }

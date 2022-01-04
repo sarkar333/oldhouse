@@ -1,0 +1,63 @@
+﻿@model oldhouse.Models.Requested
+
+@{
+    ViewBag.Title = "Requested";
+}
+
+<h2>Requested</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Requested</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Request, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Request, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Request, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+  
+        @*@Html.LabelFor(model => model.Accept, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Accept, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Accept, "", new { @class = "text-danger" })
+        </div>*@
+        <input type="submit" name="Accept" value="Accept" class="btn btn-primary" />
+       
+     
+            @*@Html.LabelFor(model => model.Reject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Reject, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Reject, "", new { @class = "text-danger" })*@
+                <input type="submit" name="Reject" value="Reject" class="btn btn-primary" />
+           <br />
+        @*</div>*@
+    <button onclick="myFunction()">Request</button>
+
+    <script>
+        function myFunction() {
+            alert("your Request is submitted Successfull!");
+        }
+    </script>
+    @*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>*@
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

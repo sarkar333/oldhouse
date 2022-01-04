@@ -1,0 +1,71 @@
+﻿@model oldhouse.Models.MyRegister
+
+@{
+    ViewBag.Title = "ShowDetails";
+}
+
+
+<center>
+    
+    <div style="border:double";
+         padding-top: 20px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-left: 80px;
+         >
+        <h2>Old Home Details</h2>
+        <hr />
+        <h3>
+            <dl class="dl-horizontal">
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.FullName)*@ Old Home
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContactNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContactNo)
+                </dd>
+
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalSeats)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalSeats)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.VacantSeats)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VacantSeats)
+                </dd>
+
+
+
+            </dl>
+    </div>
+</center>
+<button style=" margin-left: 200px;" onclick="document.location='https://localhost:44316/Home/ViewServices'" class="btn-primary" >ViewServices</button>
+
+<button style=" margin-left: 680px;" onclick="document.location='https://localhost:44316/Home/SearchPackage'" class="btn-primary">ViewPackage</button>
+</h3>

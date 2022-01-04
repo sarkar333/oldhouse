@@ -11,14 +11,12 @@ namespace oldhouse.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-
-    public partial class Image
+    
+    public partial class Requested
     {
-        public int ImageID { get; set; }
-        public string Title { get; set; }
-        public string ImagePath { get; set; }
-        //public HttpPostedFileBase ImageFile { get; set; }
-        public HttpPostedFileBase ImageFile { get; set; }
+        public long id { get; set; }
+        public string Request { get; set; }
+        public string Accept { get; set; }
+        public string Reject { get; set; }
     }
 }

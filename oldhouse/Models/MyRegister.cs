@@ -16,5 +16,10 @@ namespace oldhouse.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string UserType { get; set; }
+
+        public string TotalSeats { get;  set; }
+
+        public string VacantSeats { get; set; }
+        public string Gender { get; set; }
     }
 }

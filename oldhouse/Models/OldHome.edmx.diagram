@@ -5,8 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2ff37f37bbea480f8af5778515f0f596" Name="Diagram1">
-        <EntityTypeShape EntityType="OldHouseModel.Image" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OldHouseModel.Register" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldHouseModel.Image" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="OldHouseModel.Register" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OldHouseModel.Package" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="OldHouseModel.FK__Packages__regid__06CD04F7" />
+        <AssociationConnector Association="OldHouseModel.FK_Packages_Packages" />
+        <EntityTypeShape EntityType="OldHouseModel.Requested" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
